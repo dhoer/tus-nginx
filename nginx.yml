@@ -1,0 +1,16 @@
+- hosts: all
+  user: vagrant
+  become: true
+  tasks:
+   - name: Install Nginx
+     apt:
+       name: nginx
+       state: present
+       update_cache: true
+   - name: Change Nginx index.html page
+     copy:
+       src: index.html
+       dest: /usr/share/nginx/html/index.html
+       owner: root
+       group: root
+       mode: 0644
